@@ -11,6 +11,7 @@ from mini_court import MiniCourt
 import cv2
 import pandas as pd
 from copy import deepcopy
+from heatmap_generator import save_heatmap_dashboard
 
 
 def main():
@@ -51,6 +52,14 @@ def main():
     player_mini_court_detections, ball_mini_court_detections = mini_court.convert_bounding_boxes_to_mini_court_coordinates(player_detections, 
                                                                                                           ball_detections,
                                                                                                           court_keypoints)
+    
+    save_heatmap_dashboard(
+    mini_court,
+    player_mini_court_detections,
+    ball_mini_court_detections,
+    "output_videos/heatmap_dashboard.jpg",
+    selected_player_id=1
+    )
 
     player_stats_data = [{
         'frame_num':0,
